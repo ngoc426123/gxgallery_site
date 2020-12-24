@@ -15,7 +15,7 @@ export default {
 
   actions: {
     getListAlbums: async function ({commit}) {
-      const ret = await callAPI('https://thuvienanh.gxphuhoa.org/api/albums');
+      const ret = await callAPI('https://thuvienanh.gxphuhoa.org/api/albums?limit=21');
 
       commit('listAlbums', ret.data);
     }

@@ -1,6 +1,7 @@
 html,
 body {
   font-family: 'Barlow', sans-serif;
+  background-color: $white1;
 }
 
 .constrain {
@@ -9,4 +10,8 @@ body {
 
 img {
   max-width: 100%;
+}
+
+a {
+  transition: all 0.2s linear;
 }

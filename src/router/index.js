@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 
 // COMPONENTS
 import Home from '../views/Home'
+import Detail from '../views/Detail'
 
 Vue.use(VueRouter)
 
@@ -10,6 +11,10 @@ const routes = [
   {
     path: '/',
     component: Home
+  },
+  {
+    path: '/albumhinh/:slug',
+    component: Detail
   },
 ]
 

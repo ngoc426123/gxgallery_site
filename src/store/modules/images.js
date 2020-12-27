@@ -1,3 +1,4 @@
+import api from '../../api/index'
 import { callAPI } from '../../utils/https'
 
 export default {
@@ -22,7 +23,10 @@ export default {
   actions: {
     getAlbumsDetail: async function ({commit}, data) {
       commit('images', []);
-      const ret = await callAPI(`https://thuvienanh.gxphuhoa.org/api/images?slug=${data.slug}`);
+      const param = {
+        slug: data.slug
+      }
+      const ret = await callAPI(api.images, param);
 
       commit('name', ret.name);
       commit('sl', ret.sl);

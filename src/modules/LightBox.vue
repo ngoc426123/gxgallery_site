@@ -25,22 +25,17 @@ export default {
     ]),
   },
 
-  watch: {
-    src: function () {
-      const image = document.querySelector('.lightbox__img');
-      const isLoaded = image.complete && image.naturalHeight !== 0;
-
-      console.log(isLoaded);
-    }
-  },
-
   methods: {
     ...mapActions('lightbox', [
-      'setIsShow'
+      'setSrc',
+      'setIsShow',
+      'setIsLoad'
     ]),
 
     eventClickOutSide: function () {
       this.setIsShow(false);
+      this.setIsLoad(false);
+      this.setSrc('');
     }
   }
 }

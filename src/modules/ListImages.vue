@@ -45,6 +45,13 @@ export default {
 
       this.setSrc(src);
       this.setIsShow(true);
+      this.setIsLoad(false);
+
+      const img = document.querySelector('.lightbox__img');
+
+      img.addEventListener('load', () => {
+        this.setIsLoad(true);
+      })
     },
   }
 }

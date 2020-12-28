@@ -6,7 +6,8 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex'
+import { setMeta } from '../utils/https'
+import { mapState, mapActions } from 'vuex'
 
 import AlbumsInfo from '../modules/AlbumsInfo'
 import ListImages from '../modules/ListImages'
@@ -19,16 +20,24 @@ export default {
     ListImages
   },
 
+  computed: {
+    ...mapState('images', [
+      'name'
+    ]),
+  },
+
   methods: {
     ...mapActions('images', [
       'getAlbumsDetail',
     ]),
   },
 
-  created () {
+  async created () {
     const slug = this.$route.params.slug;
-
-    this.getAlbumsDetail({slug});
-  }
+    await this.getAlbumsDetail({slug});
+    setMeta({
+      title: this.name,
+    });
+  },
 }
 </script>

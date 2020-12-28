@@ -8,3 +8,7 @@ export async function callAPI (url, data) {
 
   return ret.data;
 }
+
+export function setMeta (data) {
+  document.title = data.title;
+}

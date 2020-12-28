@@ -28,7 +28,7 @@
         </div>
       </div>
     </div>
-    <Loading />
+    <Loading :isShow="isLoading"/>
   </div>
 </template>
 
@@ -65,12 +65,13 @@ export default {
 
   mounted () {
     const self = this;
-    window.addEventListener('scroll', function () {
+    const dom = document.querySelector('.list-album');
+
+    dom !== null && window.addEventListener('scroll', function () {
       const winScrollTop = window.scrollY;
       const winHeight = window.innerHeight;
       const winOffsetBottom = winScrollTop + winHeight;
 
-      const dom = document.querySelector('.list-album');
       const domBottom = dom.getBoundingClientRect()['top'] + window.scrollY;
       const domHeight = dom.clientHeight;
       const domOffsetBottom = domBottom + domHeight;

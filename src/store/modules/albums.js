@@ -39,9 +39,11 @@ export default {
       commit('isLoading', true);
       const ret = await callAPI(api.albums, param);
 
-      commit('listAlbums', ret.data);
-      commit('isLoading', false);
-      commit('isMore', ret.ismore);
+      setTimeout(() => {
+        commit('listAlbums', ret.data);
+        commit('isLoading', false);
+        commit('isMore', ret.ismore);
+      }, 1000);
     }
   },
 }

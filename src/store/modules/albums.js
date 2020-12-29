@@ -23,6 +23,7 @@ export default {
         state.listAlbums.push(item);
       });
     },
+    emptyAlbum: (state) => state.listAlbums = [],
   },
 
   actions: {

@@ -60,14 +60,15 @@ export default {
   },
 
   created () {
-    this.getListAlbums();
+    this.listAlbums.length === 0 && this.getListAlbums();
   },
 
   mounted () {
     const self = this;
-    const dom = document.querySelector('.list-album');
 
-    dom !== null && window.addEventListener('scroll', function () {
+    window.addEventListener('scroll', function () {
+      const dom = document.querySelector('.list-album');
+      if ( dom === null ) return;
       const winScrollTop = window.scrollY;
       const winHeight = window.innerHeight;
       const winOffsetBottom = winScrollTop + winHeight;
@@ -75,8 +76,11 @@ export default {
       const domBottom = dom.getBoundingClientRect()['top'] + window.scrollY;
       const domHeight = dom.clientHeight;
       const domOffsetBottom = domBottom + domHeight;
-      
-      if ( winOffsetBottom >= domOffsetBottom && self.isMore && !self.isLoading ) {
+
+      if ( winOffsetBottom >= domOffsetBottom 
+          && self.isMore 
+          && !self.isLoading ) {
+        console.log('a');
         const nextPage = self.page + 1;
         self.incrPage(nextPage);
         self.getListAlbums();

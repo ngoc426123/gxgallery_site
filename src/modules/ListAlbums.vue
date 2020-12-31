@@ -57,16 +57,8 @@ export default {
       'getListAlbums',
       'incrPage'
     ]),
-  },
 
-  created () {
-    this.listAlbums.length === 0 && this.getListAlbums();
-  },
-
-  mounted () {
-    const self = this;
-
-    window.addEventListener('scroll', function () {
+    onScroll: function () {
       const dom = document.querySelector('.list-album');
       if ( dom === null ) return;
       const winScrollTop = window.scrollY;
@@ -78,14 +70,26 @@ export default {
       const domOffsetBottom = domBottom + domHeight;
 
       if ( winOffsetBottom >= domOffsetBottom 
-          && self.isMore 
-          && !self.isLoading ) {
-        console.log('a');
-        const nextPage = self.page + 1;
-        self.incrPage(nextPage);
-        self.getListAlbums();
+          && this.isMore 
+          && !this.isLoading ) {
+
+        const nextPage = this.page + 1;
+        this.incrPage(nextPage);
+        this.getListAlbums();
       }
-    });
+    },
   },
+
+  created () {
+    this.listAlbums.length === 0 && this.getListAlbums();
+  },
+
+  mounted () {
+    window.addEventListener('scroll', this.onScroll);
+  },
+
+  beforeDestroy () {
+    window.removeEventListener('scroll', this.onScroll);
+  }
 }
 </script>
